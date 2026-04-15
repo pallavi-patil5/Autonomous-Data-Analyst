@@ -136,12 +136,6 @@ Autonomous Data Analyst/
 - **Matplotlib & Seaborn** – Data visualization
 - **NumPy & SciPy** – Numerical computing
 
-## 📚 Documentation
-
-- [API Documentation](API_DOCUMENTATION.md) – Detailed API reference
-- [Contributing Guide](CONTRIBUTING.md) – How to contribute
-- [Changelog](CHANGELOG.md) – Version history
-- [Security Policy](SECURITY.md) – Security guidelines
 
 ## 🔒 Security Notes
 
@@ -150,34 +144,6 @@ Autonomous Data Analyst/
 - All data processing happens locally
 - See [SECURITY.md](SECURITY.md) for more details
 
-## 🤝 Contributing
 
-Contributions are welcome! To add new capabilities:
 
-1. Create a new agent class inheriting from `BaseAgent`
-2. Implement `get_capabilities()` method
-3. Add capability methods with clear docstrings
-4. Register the agent in `SmartOrchestratorV2`
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Google Gemini AI for natural language processing
-- Streamlit for the amazing web framework
-- The open-source data science community
-
-## 📞 Support
-
-For questions, issues, or feature requests:
-- Open an issue on GitHub
-- Check existing documentation
-- Review the API documentation
-
----
-
-**Built with ❤️ using Autonomous AI Agents**
