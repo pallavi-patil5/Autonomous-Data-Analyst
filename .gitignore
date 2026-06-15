@@ -1,5 +1,116 @@
+# =====================
 # Python
+# =====================
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
 
-# Virtual environment
+# =====================
+# Virtual Environment
+# =====================
 venv/
+env/
+ENV/
+.venv/
+
+# =====================
+# IDE
+# =====================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# =====================
+# Jupyter Notebook
+# =====================
+.ipynb_checkpoints
+*.ipynb
+
+# =====================
+# Data Files (user uploads)
+# =====================
+*.csv
+*.xlsx
+*.xls
+*.db
+*.sqlite
+*.parquet
+*.feather
+*.json.gz
+data/
+datasets/
+uploads/
+
+# =====================
+# ML Model Files
+# =====================
+*.pkl
+*.joblib
+*.h5
+*.model
+*.onnx
+*.pt
+*.pth
+models/
+saved_models/
+
+# =====================
+# Generated Reports
+# =====================
+*.pdf
+*.docx
+report_*.json
+reports/
+
+# =====================
+# Streamlit
+# =====================
+.streamlit/secrets.toml
+.streamlit/
+
+# =====================
+# Environment Variables
+# =====================
+.env
+.env.local
+.env.production
+
+# =====================
+# OS
+# =====================
+.DS_Store
+.DS_Store?
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# =====================
+# Logs & Temp
+# =====================
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+
+# =====================
+# Coverage & Testing
+# =====================
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/

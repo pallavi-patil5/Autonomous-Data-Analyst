@@ -150,7 +150,7 @@ if 'selected_query' not in st.session_state:
 
 with st.sidebar:
     st.header("⚙️ Configuration")
-    api_key = st.text_input("Gemini API Key:", type="password", help="Enter your Google Gemini API key")
+    api_key = st.text_input("Groq API Key:", type="password", help="Enter your Groq API key from console.groq.com")
 
     if api_key:
         st.success("✅ API Key Set")
@@ -197,6 +197,7 @@ if api_key:
                 df = pd.read_excel(uploaded_file)
 
             orchestrator.set_data(df)
+            orchestrator._dataset_name = uploaded_file.name
             st.success(f"✅ Dataset Loaded: {df.shape[0]} rows × {df.shape[1]} columns")
 
             with st.expander("📋 Preview Dataset", expanded=False):
@@ -284,6 +285,123 @@ if api_key:
                             st.dataframe(current_result, use_container_width=True)
                             csv = current_result.to_csv(index=False)
                             st.download_button("📥 Download CSV", csv, f"{task_name}_result.csv", "text/csv", key=f"download_{idx}")
+
+                        # Generated Report output
+                        elif task_name == "generated_report" and isinstance(current_result, dict):
+                            st.markdown("### 📄 Generated Report")
+                            report_agent = orchestrator.agents.get('report')
+                            meta = current_result.get("metadata", {})
+
+                            c1, c2, c3 = st.columns(3)
+                            c1.info(f"📁 **Dataset:** {meta.get('dataset_name', '-')}")
+                            c2.info(f"🕐 **Generated:** {meta.get('generated_at', '-')}")
+                            c3.info(f"🎯 **Objective:** {meta.get('objective', '-')[:60]}")
+
+                            # --- Section previews ---
+                            sections = current_result.get("sections", {})
+                            section_labels = {
+                                "executive_summary":   "1️⃣ Executive Summary",
+                                "data_quality":        "2️⃣ Data Quality Report",
+                                "eda":                 "3️⃣ Exploratory Data Analysis",
+                                "visualizations":      "4️⃣ Visualizations",
+                                "ml_results":          "5️⃣ Machine Learning Results",
+                                "reflection_analysis": "6️⃣ Reflection Analysis",
+                                "feature_importance":  "7️⃣ Feature Importance",
+                                "recommendations":     "8️⃣ Recommendations",
+                                "conclusion":          "9️⃣ Conclusion",
+                            }
+                            for sec_key, sec_label in section_labels.items():
+                                sec_data = sections.get(sec_key, {})
+                                with st.expander(sec_label, expanded=False):
+                                    st.json(sec_data)
+
+                            # --- Download buttons ---
+                            if report_agent:
+                                st.markdown("#### 📥 Download Full Report")
+                                dl_col1, dl_col2, dl_col3 = st.columns(3)
+
+                                # JSON
+                                with dl_col1:
+                                    try:
+                                        import json as _json
+                                        json_bytes = _json.dumps(current_result, indent=2, default=str).encode("utf-8")
+                                        st.download_button(
+                                            label="⬇️ Download JSON",
+                                            data=json_bytes,
+                                            file_name="data_science_report.json",
+                                            mime="application/json",
+                                            key=f"json_dl_{idx}",
+                                            use_container_width=True
+                                        )
+                                    except Exception as e:
+                                        st.error(f"JSON error: {e}")
+
+                                # DOCX
+                                with dl_col2:
+                                    try:
+                                        docx_meta = report_agent.export_docx(current_result, "report.docx")
+                                        if docx_meta.get("report_generated"):
+                                            with open(docx_meta["file_path"], "rb") as f:
+                                                docx_bytes = f.read()
+                                            st.download_button(
+                                                label="⬇️ Download DOCX",
+                                                data=docx_bytes,
+                                                file_name="data_science_report.docx",
+                                                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                                key=f"docx_dl_{idx}",
+                                                use_container_width=True
+                                            )
+                                        else:
+                                            st.warning(f"DOCX: {docx_meta.get('error', 'Unknown error')}")
+                                    except Exception as e:
+                                        st.warning(f"DOCX unavailable: {e}")
+
+                                # PDF
+                                with dl_col3:
+                                    try:
+                                        pdf_meta = report_agent.export_pdf(current_result, "report.pdf")
+                                        if pdf_meta.get("report_generated"):
+                                            with open(pdf_meta["file_path"], "rb") as f:
+                                                pdf_bytes = f.read()
+                                            st.download_button(
+                                                label="⬇️ Download PDF",
+                                                data=pdf_bytes,
+                                                file_name="data_science_report.pdf",
+                                                mime="application/pdf",
+                                                key=f"pdf_dl_{idx}",
+                                                use_container_width=True
+                                            )
+                                        else:
+                                            st.warning(f"PDF: {pdf_meta.get('error', 'Unknown error')}")
+                                    except Exception as e:
+                                        st.warning(f"PDF unavailable: {e}")
+
+                        # Reflection loop output
+                        elif task_name == "reflection_loop" and isinstance(current_result, dict):
+                            st.markdown("### 🔁 Reflection Loop Summary")
+                            col_r1, col_r2, col_r3 = st.columns(3)
+                            col_r1.metric("Best Model",     current_result.get("best_model", "-"))
+                            col_r2.metric("Best Accuracy",  f"{current_result.get('best_accuracy', 0):.2%}")
+                            col_r3.metric("Cycles Run",     current_result.get("reflection_cycles", 0))
+
+                            if current_result.get("improvements_applied"):
+                                st.markdown("**✅ Improvements Applied:**")
+                                for imp in current_result["improvements_applied"]:
+                                    st.markdown(f"- `{imp}`")
+
+                            if current_result.get("reflection_history"):
+                                st.markdown("**📜 Reflection History:**")
+                                history_df = pd.DataFrame([
+                                    {
+                                        "Cycle":           h["cycle"],
+                                        "Model":           h.get("model", "-"),
+                                        "Accuracy":        f"{h['accuracy']:.2%}",
+                                        "Severity":        h.get("severity", "-"),
+                                        "Recommendations": "; ".join(h.get("recommendations", [])[:2])
+                                    }
+                                    for h in current_result["reflection_history"]
+                                ])
+                                st.dataframe(history_df, use_container_width=True)
 
                         # ML model outputs (dict)
                         elif isinstance(current_result, dict):
