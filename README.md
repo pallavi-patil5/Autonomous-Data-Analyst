@@ -1,10 +1,15 @@
 # 🤖 Autonomous Data Science AI
 
+<<<<<<< HEAD
 An intelligent, zero-hardcoded-rules data science assistant powered by **Groq LLaMA 3.3 70B** and an autonomous multi-agent architecture. The system dynamically discovers capabilities and executes complex data science workflows through natural language queries — including automatic model evaluation, iterative self-improvement, and comprehensive report generation.
+=======
+An intelligent, zero-hardcoded-rules data science assistant powered by **Groq LLaMA AI** and autonomous agent architecture. This system dynamically discovers capabilities and executes complex data science workflows through natural language queries — including automatic model evaluation, iterative self-improvement, and comprehensive report generation.
+>>>>>>> abd4687707ed472054553d358dbd239466d52d67
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.31+-red.svg)](https://streamlit.io)
+<<<<<<< HEAD
 [![Groq](https://img.shields.io/badge/Groq-LLaMA3.3_70B-orange.svg)](https://console.groq.com)
 
 ---
@@ -24,6 +29,23 @@ An intelligent, zero-hardcoded-rules data science assistant powered by **Groq LL
 - **Interactive Streamlit UI** — Clean, responsive web interface
 
 ---
+=======
+[![Groq](https://img.shields.io/badge/Groq-LLaMA3-orange.svg)](https://console.groq.com)
+
+## ✨ Key Features
+
+- **Zero Hardcoded Rules** – Fully autonomous agent system with dynamic capability discovery
+- **Natural Language Interface** – Describe what you want in plain English
+- **Universal Dataset Support** – Works with any CSV or Excel file
+- **Complete Data Science Pipeline** – Cleaning, EDA, Visualization, Feature Engineering, and ML
+- **Multi-Model ML Support** – 10+ machine learning algorithms (RF, SVM, KNN, Logistic Regression, etc.)
+- **Intelligent Query Planning** – Automatically handles task dependencies and preprocessing
+- **Critic Agent** – Automatically evaluates model performance and detects issues
+- **Reflection Loop** – Iteratively improves models by applying recommendations automatically
+- **Report Agent** – Generates comprehensive reports exportable as PDF, DOCX, and JSON
+- **Smart Suggestions** – Context-aware query recommendations based on your dataset
+- **Interactive Streamlit UI** – Beautiful, responsive web interface
+>>>>>>> abd4687707ed472054553d358dbd239466d52d67
 
 ## 🏗️ Architecture
 
@@ -71,7 +93,11 @@ git clone <repository-url>
 cd "Autonomous Data Analyst"
 ```
 
+<<<<<<< HEAD
 2. Create a virtual environment and install dependencies:
+=======
+2. Create and activate virtual environment:
+>>>>>>> abd4687707ed472054553d358dbd239466d52d67
 ```bash
 python -m venv venv
 venv\Scripts\python.exe -m pip install -r requirements.txt
@@ -87,8 +113,11 @@ venv\Scripts\streamlit.exe run enhanced_app.py
 5. Enter your **Groq API key** in the sidebar
 
 6. Upload a dataset and start querying!
+<<<<<<< HEAD
 
 ---
+=======
+>>>>>>> abd4687707ed472054553d358dbd239466d52d67
 
 ## 📊 Usage Examples
 
@@ -116,8 +145,11 @@ venv\Scripts\streamlit.exe run enhanced_app.py
 - "Encode categorical variables"
 - "Scale features for machine learning"
 
+<<<<<<< HEAD
 ---
 
+=======
+>>>>>>> abd4687707ed472054553d358dbd239466d52d67
 ## 📊 Dashboard Output After ML Query
 
 Every ML training query automatically produces 4 result cards:
@@ -129,8 +161,11 @@ Every ML training query automatically produces 4 result cards:
 | Critic Evaluation | Issues detected, recommendations, severity level |
 | Generated Report | Full 9-section report with PDF/DOCX/JSON download |
 
+<<<<<<< HEAD
 ---
 
+=======
+>>>>>>> abd4687707ed472054553d358dbd239466d52d67
 ## 📁 Project Structure
 
 ```
@@ -147,7 +182,10 @@ Autonomous Data Analyst/
 ├── critic_agent.py                        # Model evaluation & issue detection
 ├── reflection_engine.py                   # Iterative self-improvement loop
 ├── report_agent.py                        # PDF / DOCX / JSON report generation
+<<<<<<< HEAD
 ├── __init__.py                            # Package initializer
+=======
+>>>>>>> abd4687707ed472054553d358dbd239466d52d67
 ├── requirements.txt                       # Python dependencies
 ├── setup.py                               # Package setup
 ├── .env.example                           # Environment variable template
@@ -173,6 +211,7 @@ Autonomous Data Analyst/
 7. **Report Generation** — ReportAgent collects all results and builds a 9-section structured report
 8. **Result Presentation** — All results displayed in Streamlit with download buttons
 
+<<<<<<< HEAD
 ---
 
 ## 🔁 Critic Agent
@@ -183,16 +222,30 @@ Automatically evaluates every trained model and detects:
 - Underfitting (both train and test scores < 65%)
 - Class imbalance (precision vs recall gap > 15%)
 - Low F1-score (< 65%)
+=======
+## 🔁 Critic Agent
+
+Automatically evaluates every trained model and detects:
+- Low accuracy
+- Overfitting (train score >> test score)
+- Underfitting (both scores low)
+- Class imbalance (precision vs recall gap)
+>>>>>>> abd4687707ed472054553d358dbd239466d52d67
 
 Returns structured output:
 ```json
 {
+<<<<<<< HEAD
   "issues_detected": ["Moderate accuracy: 0.72 — room for improvement"],
+=======
+  "issues_detected": ["Moderate accuracy: 0.72"],
+>>>>>>> abd4687707ed472054553d358dbd239466d52d67
   "recommendations": ["Try Random Forest", "Apply feature scaling"],
   "severity": "medium"
 }
 ```
 
+<<<<<<< HEAD
 ---
 
 ## 🔄 Reflection Loop
@@ -215,6 +268,24 @@ Stopping criteria:
 
 Generates comprehensive 9-section reports:
 
+=======
+## 🔄 Reflection Loop
+
+Reads CriticAgent recommendations and automatically applies improvements:
+- Feature scaling
+- Feature selection (SelectKBest)
+- Model switching (Random Forest, Gradient Boosting)
+- Class balancing
+
+Stopping criteria:
+- Maximum 2 cycles
+- Improvement < 1%
+- Accuracy ≥ 90%
+
+## 📄 Report Agent
+
+Generates comprehensive 9-section reports:
+>>>>>>> abd4687707ed472054553d358dbd239466d52d67
 1. Executive Summary
 2. Data Quality Report
 3. Exploratory Data Analysis
@@ -226,6 +297,7 @@ Generates comprehensive 9-section reports:
 9. Conclusion
 
 Export formats: **PDF**, **DOCX**, **JSON**
+<<<<<<< HEAD
 
 ---
 
@@ -242,21 +314,41 @@ Export formats: **PDF**, **DOCX**, **JSON**
 | python-docx | Word document generation |
 | ReportLab | PDF generation |
 | openpyxl | Excel file support |
+=======
+
+## 🛠️ Technologies Used
+
+- **Groq LLaMA 3.3 70B** – Natural language understanding and planning
+- **Streamlit** – Interactive web interface
+- **Pandas** – Data manipulation
+- **Scikit-learn** – Machine learning algorithms
+- **Matplotlib & Seaborn** – Data visualization
+- **NumPy & SciPy** – Numerical computing
+- **python-docx** – Word document generation
+- **ReportLab** – PDF generation
+>>>>>>> abd4687707ed472054553d358dbd239466d52d67
 
 ---
 
 ## 🔒 Security Notes
 
+<<<<<<< HEAD
 - API keys are handled securely through Streamlit's password input and are never stored on disk
 - No dataset is sent to external servers — all data processing happens locally
 - Only the natural language query and column metadata are sent to the Groq API for planning
 - See [SECURITY.md](SECURITY.md) for full security policies
 
 ---
+=======
+- API keys are handled securely through Streamlit's password input
+- No data is sent to external servers except Groq API for query processing
+- All data processing happens locally
+- See [SECURITY.md](SECURITY.md) for more details
+>>>>>>> abd4687707ed472054553d358dbd239466d52d67
 
 ## 🤝 Contributing
 
-Contributions are welcome! To add new capabilities:
+To add new capabilities:
 
 1. Create a new agent class that inherits from `BaseAgent`
 2. Implement `get_capabilities()` to self-describe your agent's functions
@@ -267,9 +359,19 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ---
 
+<<<<<<< HEAD
 ## 📝 Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) for version history and release notes.
+=======
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Groq for the blazing fast LLaMA inference API
+- Streamlit for the amazing web framework
+- The open-source data science community
+>>>>>>> abd4687707ed472054553d358dbd239466d52d67
 
 ---
 
