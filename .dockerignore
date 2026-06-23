@@ -1,0 +1,51 @@
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Data files
+*.csv
+*.xlsx
+*.xls
+data/
+datasets/
+uploads/
+
+# Generated reports
+*.pdf
+*.docx
+reports/
+
+# ML models
+*.pkl
+*.joblib
+*.h5
+models/
+
+# IDE
+.vscode/
+.idea/
+
+# Git
+.git/
+.gitignore
+
+# OS
+.DS_Store
+Thumbds.db
+
+# Logs
+*.log
+logs/
+
+# Env
+.env
+.env.local
+
+# Docs (optional, remove if you want docs in image)
+*.md

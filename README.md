@@ -56,6 +56,25 @@ Each agent inherits from `BaseAgent` and self-describes its capabilities, enabli
 
 ---
 
+## 🐳 Docker
+
+### Pull from Docker Hub
+```bash
+docker pull patilpallavi/autonomous-data-science-agent:latest
+```
+
+### Run with Docker
+```bash
+docker run -p 8501:8501 patilpallavi/autonomous-data-science-agent:latest
+```
+
+### Run with Docker Compose
+```bash
+docker-compose up
+```
+
+Open `http://localhost:8501` in your browser.
+
 ## 🚀 Quick Start
 
 ### Prerequisites
